@@ -1,6 +1,7 @@
 //
 // Created by Oskar on 26.02.2025.
 //
+// Inneffizient, da hier 2 Schleifen verwendet werden. Im der Übung haben wir nur eine Schleife vom Ende des Arrays nach innen benutzt. Dies ist effizienter
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -8,7 +9,6 @@
 int array[] = {1,2,3,4,5,6,7,8,9};
 int size = 9;
 int cnum = 17;
-
 
 int T (int A[], int n, int t)
 {
