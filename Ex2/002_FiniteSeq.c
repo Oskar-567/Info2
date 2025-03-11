@@ -6,20 +6,22 @@
 
 void sequence(int n)
 {
-  if(n == 0)
+  printf("%d ",n);
+  if(n == 1)
   {
     return;
   }
 
   if(n%2 == 0)
   {
-    printf("%d ",n/2);
+
+    n = n/2;
   }
   else
   {
-    printf("%d ",3 * n + 1);
+    n = 3*n+1;
   }
-  sequence(n-1);
+  sequence(n);
 
 }
 
