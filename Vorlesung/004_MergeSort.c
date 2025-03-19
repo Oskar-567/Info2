@@ -5,7 +5,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int array[]={5,2,4,7,1,3,6,2};
+int arrayA[]={5,2,4,7,1,3,6,2};
+int arrayB[]={5,2,4,7,1,3,6,2};
+
+int n = sizeof(arrayA)/sizeof(arrayA[0]);
 
 void Printarray(int A[], int size)
 {
@@ -17,42 +20,18 @@ void Printarray(int A[], int size)
 }
 
 
-void Merge(int arr[], int left, int mid, int right) {
-  int n1 = mid - left + 1;
-  int n2 = right - mid;
-  int L[n1], R[n2];
+void Merge(int arr[], int left, int right, int mid) {
+  int i,j,k;
 
-  for (int i = 0; i < n1; i++)
-    L[i] = arr[left + i];
-  for (int j = 0; j < n2; j++)
-    R[j] = arr[mid + 1 + j];
-
-  int i = 0, j = 0, k = left;
-  while (i < n1 && j < n2) {
-    if (L[i] <= R[j]) {
-      arr[k] = L[i];
-      i++;
-    } else {
-      arr[k] = R[j];
-      j++;
-    }
-    k++;
+  for (i = 0; i <= mid; i++) {arrayB[i] = arr[i];}
+  for (i = mid+1; i <= right; i++) {arrayB[right + mid - i+1] = arr[i];}
+  i = left; j=right;
+  for (k = left; k <= right; k++)
+  {
+    if (arrayB[i] <= arrayB[j]) {arr[k] = arrayB[i]; i++; }
+    else {arr[k] = arrayB[j]; j-- ;}
   }
-
-  while (i < n1) {
-    arr[k] = L[i];
-    i++;
-    k++;
   }
-
-  while (j < n2) {
-    arr[k] = R[j];
-    j++;
-    k++;
-  }
-}
-
-
 
 void MergeSort(int A[], int left, int right)
 {
@@ -63,23 +42,20 @@ void MergeSort(int A[], int left, int right)
     MergeSort(A,left,mid);
     MergeSort(A,mid+1,right);
     //Printarray(A,right);
-    Merge(A,left,mid,right);
+    Merge(A,left,right,mid);
   }
 }
 
 
 
-
 int main()
 {
-  int l = 0;
-  int r = sizeof(array)/sizeof(array[0]);
   printf("Array unsorted:\n");
-  Printarray(array, r);
+  Printarray(arrayA, n-1);
 
-  MergeSort(array, l, r);
+  MergeSort(arrayA, 0, n-1);
 
   printf("Array sorted:\n");
-  Printarray(array, r);
+  Printarray(arrayA, n-1);
 
 }
