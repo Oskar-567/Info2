@@ -51,11 +51,12 @@ void MergeSort(int A[], int left, int right)
 int main()
 {
   printf("Array unsorted:\n");
-  Printarray(arrayA, n-1);
+  Printarray(arrayA, n);
 
   MergeSort(arrayA, 0, n-1);
 
   printf("Array sorted:\n");
-  Printarray(arrayA, n-1);
+  Printarray(arrayA, n);
+
 
 }
