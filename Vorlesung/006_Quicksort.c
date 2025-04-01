@@ -32,8 +32,8 @@ int HoarePartition(int A[], int l, int r)
   int j = r + 1;
   while (1)
   {
-    do {j = j - 1;} while (A[j] > x);
-    do {i = i + 1;} while (A[i] < x);
+    do {j = j - 1;} while (A[j] >= x);
+    do {i = i + 1;} while (A[i] <= x);
     printf("i = %d \n", i);
     printf("j = %d \n", j);
 
