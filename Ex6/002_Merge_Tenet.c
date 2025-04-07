@@ -103,6 +103,27 @@ struct node* merge(struct node* a, struct node* b)
   return new;
 }
 
+struct node* reverse(struct node* a)
+{
+  struct node* current = a;
+  struct node* temp = NULL;
+
+  while (current != NULL)
+  {
+    temp = current->prev;
+    current->prev = current->next;
+    current->next = temp;
+    current = current->prev;
+  }
+
+
+  if (temp != NULL)
+  {
+    a = temp->prev;
+  }
+  return a;
+}
+
 int main()
 {
   struct node *Array1 = create(A,sizea);
@@ -112,5 +133,11 @@ int main()
   print(Array2);
 
   struct node *MergeArray = merge(Array1, Array2);
+  printf("Merge Array\n");
   print(MergeArray);
+
+  printf("\n Reverse List");
+  struct node *ReverseArray = reverse(MergeArray);
+  print(ReverseArray);
+
 }
