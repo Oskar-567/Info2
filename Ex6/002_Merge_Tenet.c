@@ -136,7 +136,7 @@ int main()
   printf("Merge Array\n");
   print(MergeArray);
 
-  printf("\n Reverse List");
+  printf("\nReverse List");
   struct node *ReverseArray = reverse(MergeArray);
   print(ReverseArray);
 
