@@ -8,7 +8,6 @@
 #define isEmpty (-1)
 #define true 1
 #define false 0
-#define queuesize 100
 
 //--- STACK ---
 
@@ -16,7 +15,7 @@
 int S[MAX];
 int StackArrayIndex = 0;
 
-void newArrayStack()
+void new()
 {
   StackArrayIndex = 0;
   printf("Array has been reset\n");
@@ -34,31 +33,32 @@ int pop()
   return isEmpty;
 }
 
-
-
-
-
-struct stack
+int push(int x)
 {
-  int a[MAX];
-  int position;
-};
-
-struct stack *new()
-{
-  struct stack *p = malloc(sizeof(struct stack));
-  p->position = 0;
+  S[StackArrayIndex++] = x;
 }
 
-struct stack *is_empty(struct stack *p)
+void print()
 {
-  if (p->position ==0){return true;}
+  for (int i = 0; i < StackArrayIndex; i++)
+  {
+    printf("%d ",S[i]);
+  }
+  printf("\n");
 }
-
 
 
 int main()
 {
-  struct stack* S = new();
-  is_empty(S);
+  new();
+  printf("%d\n",is_empty());
+  push(5);
+  push(8);
+  push(15);
+  print();
+  printf("remove: %d\n", pop());
+  printf("remove: %d\n", pop());
+  printf("remove: %d\n", pop());
+  printf("remove: %d\n", pop());
+
 }
