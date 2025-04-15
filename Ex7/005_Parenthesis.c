@@ -39,32 +39,24 @@ int is_empty()
 
 char pop()
 {
+  if (S == NULL) {return -1;}
 
-    if (S == NULL) {return -1;}
+  char result;
+  struct node* cur;
+  cur = S;
+  result = cur->val;
 
-    if (S->next == NULL) {
-        char result = S->val;
-        free(S);
-        S = NULL;
-        return result;
-    }
-
-    char result;
-
-    struct node* cur;
-    struct node* past;
-    past = NULL;
-    cur = S;
-
-    while(cur->next != NULL)
-    {
-        past = cur;
-        cur = cur->next;
-    }
-    if (past != NULL) {past->next = NULL;}
-    result = cur->val;
+  if (cur->next == NULL)
+  {
+    free(S);
+    S = NULL;
+  }
+  else
+  {
+    S = cur->next;
     free(cur);
-
+  }
+  return result;
 }
 
 void check()
@@ -73,41 +65,26 @@ void check()
 
     struct node* cur;
     struct node* past;
-    past = NULL;
+
+    past = S->next;
     cur = S;
 
-    while(cur->next != NULL)
-    {
-        past = cur;
-        cur = cur->next;
-    }
     if ((past->val == '(' && cur->val == ')') || (past->val == '[' && cur->val == ']'))
       {
         pop();
         pop();
       }
-
-
-
 }
 
 int push(char x)
 {
-    struct node *new = malloc(sizeof(struct node));
-    new->val = x;
-    new->next = NULL;
-    struct node *cur = S;
+  struct node *new = malloc(sizeof(struct node));
+  struct node* temp = S;
+  new->val = x;
+  new->next = temp;
+  S = new;
+  check();
 
-    if (S == NULL) {S = new;}
-    else
-    {
-        while(cur->next != NULL)
-        {
-            cur = cur->next;
-        }
-        cur->next = new;
-    }
-    check();
 }
 
 
