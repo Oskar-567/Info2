@@ -38,9 +38,9 @@ int is_empty()
 
 int pop()
 {
-  int result = 0;
   if (S == NULL) {return -1;}
-  if (S->next == NULL) {result = S->val; free(S);}
+
+  int result = 0;
   struct node* cur;
   struct node* past;
   past = NULL;
@@ -51,9 +51,18 @@ int pop()
     past = cur;
     cur = cur->next;
   }
-  if (past != NULL) {past->next = NULL;}
   result = cur->val;
-  free(cur);
+
+  if (past == NULL)
+  {
+    free(S);
+    S = NULL;
+  }
+  else
+  {
+    past->next = NULL;
+    free(cur);
+  }
 }
 
 int push(int x)
