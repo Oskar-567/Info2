@@ -63,6 +63,7 @@ int pop()
     past->next = NULL;
     free(cur);
   }
+  return result;
 }
 
 int push(int x)
