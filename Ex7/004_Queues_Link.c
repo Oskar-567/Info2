@@ -16,40 +16,42 @@ struct node
     struct node* next;
 };
 
-struct node* S = NULL;
+struct node* head;
+struct node* tail;
 
 void new()
 {
-    struct node* temp;
-    while (S != NULL)
-    {
-        temp = S;
-        S = S->next;
-        free(temp);
-    }
+    head = tail = NULL;
     printf("Stack has been reset\n");
 }
 
-int is_empty()
+bool is_empty()
 {
-    if (S == NULL) {return true;}
-    return false;
+    return (head == NULL && tail == NULL);
 }
 
 int dequeue()
 {
     int result;
-    if (S == NULL)
+    if (is_empty())
     {
         return -1;
     }
 
-    struct node* temp = S;
+    struct node* temp = head;
     result = temp->val;
-    S = S->next;
-    free(temp);
-
-    return result;
+    if (head == tail)
+    {
+      free(head);
+      head = tail = NULL;
+      return result;
+    }
+    else
+    {
+      head = head->next;
+      free(temp);
+      return result;
+    }
 }
 
 int enqueue(int x)
@@ -57,22 +59,18 @@ int enqueue(int x)
     struct node *new = malloc(sizeof(struct node));
     new->val = x;
     new->next = NULL;
-    struct node *cur = S;
 
-    if (S == NULL) {S = new;}
+    if (is_empty()) {head = tail = new;}
     else
     {
-        while(cur->next != NULL)
-        {
-            cur = cur->next;
-        }
-        cur->next = new;
+      tail->next = new;
+      tail = new;
     }
 }
 
 void print()
 {
-    struct node *cur = S;
+    struct node *cur = head;
     while(cur != NULL)
     {
         printf("%d ", cur->val);

@@ -9,6 +9,7 @@
 #define false 0
 
 //--- STACK ---
+//Falsche Runtime da du hinten einfügst. Du musst vorne einfügen um O(1) zu erreichen
 
 struct node
 {
@@ -42,25 +43,17 @@ int pop()
 
   int result = 0;
   struct node* cur;
-  struct node* past;
-  past = NULL;
   cur = S;
-
-  while(cur->next != NULL)
-  {
-    past = cur;
-    cur = cur->next;
-  }
   result = cur->val;
 
-  if (past == NULL)
+  if (cur->next == NULL)
   {
     free(S);
     S = NULL;
   }
   else
   {
-    past->next = NULL;
+    S = cur->next;
     free(cur);
   }
   return result;
@@ -69,19 +62,10 @@ int pop()
 int push(int x)
 {
   struct node *new = malloc(sizeof(struct node));
+  struct node* temp = S;
   new->val = x;
-  new->next = NULL;
-  struct node *cur = S;
-
-  if (S == NULL) {S = new;}
-  else
-  {
-    while(cur->next != NULL)
-    {
-      cur = cur->next;
-    }
-    cur->next = new;
-  }
+  new->next = temp;
+  S = new;
 
 }
 
