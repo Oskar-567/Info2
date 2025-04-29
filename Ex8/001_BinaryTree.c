@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 
 int ArrayA[] = {9, 3, 10, 6, 12, 1, 8};
@@ -233,10 +234,55 @@ struct TreeNode* delete(struct TreeNode** root, int val) {
     return *root;
 }
 
+struct TreeNode* mirror(struct TreeNode *root)
+{
+  if(root->left == 0 && root->right == 0) {return NULL;}
+  struct TreeNode *temp;
+  temp = root->left;
+  root->left = root->right;
+  root->right = temp;
+  if (root->left != NULL) {mirror(root->left);}
+  if (root->right != NULL) {mirror(root->right);}
+  return root;
 
+}
 
+int identical(struct TreeNode* a, struct TreeNode* b)
+{
+  if (a == NULL && b == NULL) {return true;}
+  if (a == NULL || b == NULL) {return false;}
+  if (a->val == b->val)
+  {
+    return (identical(a->left, b->left) && identical(a->right, b->right));
+  }
+  return 0;
+}
 
+int max(int a, int b)
+{
+  if (a < b) {return b;}
+  else return a;
+}
 
+int height(struct TreeNode *root)
+{
+  if(root == NULL) {return 0;}
+  return (1 + max(height(root->left), height(root->right)));
+}
+
+int diameter(struct TreeNode *root)
+{
+  if(root == NULL){return 0;}
+
+  int leftheight = height(root->left);
+  int rightheight = height(root->right);
+
+  int leftdiameter = diameter(root->left);
+  int rightdiameter = diameter(root->right);
+
+  return (max(leftheight + rightheight + 1, max(leftdiameter, rightdiameter)));
+
+}
 
 
 
@@ -269,6 +315,31 @@ int main()
 
 
   stack_traverseTree(p);
+
+  printf("\n\nMirror\n");
+  mirror(p);
+  stack_traverseTree(p);
+
+  struct TreeNode* x = NULL;
+  for (int i = 0; i < sizeA; i++)
+  {
+    insert(&x, ArrayA[i]);
+  }
+
+  struct TreeNode* y = NULL;
+  for (int i = 0; i < sizeA; i++)
+  {
+    insert(&y, ArrayA[i]);
+  }
+
+  printf("\nX & Y are identical?: %d", identical(x, y));
+  mirror(x);
+  //stack_traverseTree(x);
+  //stack_traverseTree(y);
+  printf("\nX & Y are identical (after mirror x)?: %d", identical(x, y));
+
+  printf("\nThe Diameter of X is: %d", diameter(x));
+
 
 
 
