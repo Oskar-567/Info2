@@ -3,6 +3,9 @@
 #include <string.h>
 #include <stdbool.h>
 
+// Linear Hashing un Double Hashing werden mit festen Arrays gemacht. Für HTinsert, HTsearch, HTdelete wird dann mit einem Pointer HTp auf das Struct elem gearbeitet um dann die elemente als deletet flaggen zu können.
+
+
 int Array[] = {1,9, 101, 109, 115, 112, 203, 762, 362, 999, 1053, 473, 873, 82};
 int sizeA = sizeof(Array)/sizeof(Array[0]);
 
