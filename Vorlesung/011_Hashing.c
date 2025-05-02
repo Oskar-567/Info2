@@ -174,7 +174,7 @@ int nextSmallerPrime(int n) {
 int main() {
     // Dynamische Berechnung von m1 und Initialisierung der Arrays
     m1 = sizeA * 2;                                  // Größe des Hash-Tables (doppelt so groß wie die Array-Größe)
-    m2 = nextSmallerPrime(m1);                                          // should be neares smaller prime to m1
+    m2 = nextSmallerPrime(m1);                       // should be neares smaller prime to m1
     HTdoub = (int*)malloc(m1 * sizeof(int));    // Dynamische Zuweisung für Double Hashing
     HTlin = (int*)malloc(m1 * sizeof(int));     // Dynamische Zuweisung für Linear Probing
 
