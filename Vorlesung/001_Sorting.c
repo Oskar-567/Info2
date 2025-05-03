@@ -8,6 +8,7 @@
 int Array1[] = {9, 8, 7, 6, 5, 4, 3, 2, 1};
 int Array2[] = {5, 7, 3, 8, 6, 4, 2, 1, 9};
 int Array3[] = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+int Array4[] = {5, 7, 3, 8, 6, 4, 2, 1, 9};
 int s = sizeof(Array1)/sizeof(Array1[0]);
 
 
@@ -32,6 +33,25 @@ void BubbleSort(int A[], int size)
                 int t = A[j];
                 A[j] = A[j + 1];
                 A[j + 1] = t;
+            }
+        }
+        printline(A, size, i);
+    }
+    printf("\n");
+}
+
+void BubbleSortreverse(int A[], int size)
+{
+    printf("Bubble sort (mit groessten Elementen links) \n");
+    for (int i = 1; i < size; i++)                  // für jedes Element, bis size-1
+    {
+        for (int j = size - 1; j >= i; j--)         // für jedes Element, aber rückwärts
+        {
+            if (A[j] > A[j - 1])                    // Wenn das aktuelle Element größer ist als das vorherige
+            {
+                int t = A[j];
+                A[j] = A[j - 1];
+                A[j - 1] = t;
             }
         }
         printline(A, size, i);
@@ -85,4 +105,5 @@ int main ()
   BubbleSort(Array1, s);
   SelectionSort(Array2, s);
   InsertionSort(Array3, s);
+  BubbleSortreverse(Array4, s);
 }
