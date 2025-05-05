@@ -23,9 +23,9 @@ void Printarray(int A[], int size)
 void Merge(int arr[], int left, int right, int mid) {
   int i,j,k;
 
-  for (i = 0; i <= mid; i++) {arrayB[i] = arr[i];}
-  for (i = mid+1; i <= right; i++) {arrayB[right + mid - i+1] = arr[i];}
-  i = left; j=right;
+  for (i = 0; i <= mid; i++) {arrayB[i] = arr[i];}                             // Kopiere die linke Hälfte in arrayB
+  for (i = mid+1; i <= right; i++) {arrayB[right + mid - i+1] = arr[i];}       // Kopiere die rechte Hälfte in arrayB, aber in umgekehrter Reihenfolge
+  i = left; j=right;                                                           // Merge-Schleife: Verwalte das Zusammenführen der beiden Hälften
   for (k = left; k <= right; k++)
   {
     if (arrayB[i] <= arrayB[j]) {arr[k] = arrayB[i]; i++; }
