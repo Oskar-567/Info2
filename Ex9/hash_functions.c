@@ -9,7 +9,7 @@ int insertKeyH1(int *HT, int k) {
     int probe = k % 7;
     int collusion = 0;
     while (HT[probe] != -1) {
-        probe = (probe + 1);
+        probe = (probe + 1) %N; /*wrap around the table */
         collusion ++;
     }
     HT[probe] = k;
