@@ -266,7 +266,7 @@ struct node* AVLdel(struct node *p, int k)
     }
     else
     {
-      struct node *q = p;
+      struct node *q = p->left;
       while (q->right != NULL) {q = q->right;}
       p->val = q->val;									//Bisschen unsauber mit dem kopieren der Values. Besser Pointer verändern.
       p->left = AVLdel(p->left, q->val);
